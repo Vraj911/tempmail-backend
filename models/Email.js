@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
 const emailSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  from: { type: String, required: true },
-  to: { type: String, required: true },
-  subject: { type: String },
-  body: { type: String },
-  receivedAt: { type: Date, default: Date.now },
-  isSent: { type: Boolean, default: false },
-  aiSummary: { type: String } 
+    address: { type: String, required: true, unique: true },
+    prefix: { type: String, required: true },
+    domain_id: { type: mongoose.Schema.Types.ObjectId, ref: "Domain", required: true },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    status: { type: String, enum: ["active", "expired", "deleted"], default: "active" },
+    created_at: { type: Date, default: Date.now },
+    expires_at: { type: Date, required: true }
 });
-
-module.exports = mongoose.model("Email", emailSchema);
+module.exports = mongoose.model('Email', emailSchema);
