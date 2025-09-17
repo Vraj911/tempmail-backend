@@ -5,6 +5,8 @@ const dotenv=require('dotenv');
 const {protect}=require('./middleware/authMiddleware');
 const dashboardRoutes=require('./routes/dashboardRoutes.js');
 const authRoutes=require('./routes/authRoutes.js');
+const connectDB=require('./configs/config.js');
+connectDB();
 const app=express();
 app.use(cors());
 app.use(bodyParser.json());
