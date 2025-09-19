@@ -4,7 +4,9 @@ const bodyParser=require('body-parser');
 const dotenv=require('dotenv');
 const {protect}=require('./middleware/authMiddleware');
 const dashboardRoutes=require('./routes/dashboardRoutes.js');
+const generateEmailRoutes=require('./routes/generateEmailRoutes.js');
 const authRoutes=require('./routes/authRoutes.js');
+const settingsRoutes=require('./routes/settingsRoutes.js');
 const connectDB=require('./configs/config.js');
 connectDB();
 const app=express();
@@ -20,6 +22,8 @@ app.get('/',(req,res)=>{
 app.use('/api/auth',require('./routes/authRoutes.js'));
 //app.use(protect);
 app.use('/api/dashboard',dashboardRoutes);
+app.use('/api/generate',generateEmailRoutes);
+app.use('/api/settings',settingsRoutes);
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);
 }   );

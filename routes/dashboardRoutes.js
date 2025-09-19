@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Email = require('../models/Email.js');
+const mongoose = require('mongoose');
 router.get('/', (req, res) => {
     res.send('Dashboard route is working');
 });
