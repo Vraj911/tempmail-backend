@@ -5,6 +5,7 @@ const dotenv=require('dotenv');
 const {protect}=require('./middleware/authMiddleware');
 const authRoutes=require('./routes/authRoutes.js');
 const emailRoutes=require('./routes/emailRoutes.js');
+const userRoutes=require('./routes/userRoutes.js');
 const connectDB=require('./configs/config.js');
 connectDB();
 const app=express();
@@ -20,6 +21,7 @@ app.get('/',(req,res)=>{
 app.use('/api/auth',require('./routes/authRoutes.js'));
 //app.use(protect);
 app.use('/api/emails',emailRoutes);
+app.use('/api/user',userRoutes);
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);
 }   );

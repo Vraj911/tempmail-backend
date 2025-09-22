@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const emailRepository = require("../repositories/emailRepository"); 
+const emailRepository = require("../repositories/emailsRepository"); 
 exports.fetchEmails = async (user_id) => {
   if (user_id && !mongoose.Types.ObjectId.isValid(user_id)) {
     const error = new Error("Invalid user_id");

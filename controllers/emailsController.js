@@ -1,18 +1,21 @@
 const emailService = require("../services/emailsService");
-exports.fetchEmails = async (req, res) => {
+const fetchEmails = async (req, res) => {
   try {
     const { user_id } = req.query;
     const emails = await emailService.fetchEmails(user_id);
     res.json(emails);
   } catch (error) {
     console.error("❌ Controller Error:", error.message);
-    res.status(error.statusCode || 500).json({ error: error.message || "Server Error" });
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.message || "Server Error" });
   }
 };
-exports.createEmail = async (req, res) => {
+const createEmail = async (req, res) => {
   try {
     const { prefix, duration, user_id } = req.body;
     const newEmail = await emailService.createEmail(prefix, duration, user_id);
+
     res.status(201).json({
       message: "Email generated successfully",
       email: {
@@ -23,17 +26,25 @@ exports.createEmail = async (req, res) => {
     });
   } catch (error) {
     console.error("❌ Controller Error:", error.message);
-    res.status(error.statusCode || 500).json({ error: error.message || "Server Error" });
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.message || "Server Error" });
   }
 };
-async function deleteEmailController(req, res) {
+const deleteEmailController = async (req, res) => {
   try {
     const { id } = req.query;
     await emailService.deleteEmail(id);
     res.json({ message: "Email deleted successfully" });
   } catch (err) {
     console.error("❌ Error deleting email:", err);
-    res.status(err.status || 500).json({ error: err.message || "Internal Server Error" });
+    res
+      .status(err.status || 500)
+      .json({ error: err.message || "Internal Server Error" });
   }
-}
-module.exports = { deleteEmailController };
+};
+module.exports = {
+  fetchEmails,
+  createEmail,
+  deleteEmailController,
+};

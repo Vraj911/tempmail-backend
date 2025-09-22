@@ -35,4 +35,20 @@ const loginUser = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
-module.exports = { registerUser, loginUser };
+const resetPassword = (req, res) => {
+    res.send('Reset password route - to be implemented');
+}
+const changePassword = (req, res) => {
+    res.send('Change password route - to be implemented');
+}  
+const enable2FA = (req, res) => {
+    res.send('Enable 2FA route - to be implemented');
+}
+const verify2FA = (req, res) => {
+    res.send('Verify 2FA route - to be implemented');
+}
+const disable2FA = (req, res) => {
+    res.send('Disable 2FA route - to be implemented');
+}
+
+module.exports = { registerUser, loginUser, resetPassword , changePassword, enable2FA, verify2FA, disable2FA };
