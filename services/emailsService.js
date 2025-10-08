@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const emailRepository = require("../repositories/emailsRepository"); 
+const Email = require("../models/Email");
 exports.fetchEmails = async (user_id) => {
   if (user_id && !mongoose.Types.ObjectId.isValid(user_id)) {
     const error = new Error("Invalid user_id");
@@ -11,6 +12,9 @@ exports.fetchEmails = async (user_id) => {
     query.user_id = user_id;
   }
   return await emailRepository.findEmails(query);
+};
+exports.getEmailById = async (id) => {
+  return await Email.findById(id);
 };
 exports.createEmail = async (prefix, duration, user_id) => {
   if (!user_id) {
