@@ -2,6 +2,7 @@ const express=require('express');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 const dotenv=require('dotenv');
+dotenv.config();
 const {protect}=require('./middleware/authMiddleware');
 const authRoutes=require('./routes/authRoutes.js');
 const emailRoutes=require('./routes/emailRoutes.js');

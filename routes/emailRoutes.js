@@ -14,6 +14,6 @@ router.get('/search', emailController.searchEmails);
 router.get('/filter', emailController.filterEmails);
 router.get('/stats', emailController.getEmailStats);
 router.get('/recent', emailController.getRecentEmails);
-router.get('/inbox', emailController.getInboxMessages);
-
+router.get('/inbox/:id', emailController.getInboxFromDB);
+router.post("/fetch-from-mail/:id", emailController.fetchAndStoreEmails);
 module.exports = router;
