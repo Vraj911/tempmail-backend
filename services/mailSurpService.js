@@ -34,8 +34,6 @@ exports.fetchAndStoreEmails = async (inboxId, user_id) => {
 
   return { message: "Emails fetched and stored", count: savedEmails.length };
 };
-
-// ---------------- MailSlurp: Create a new inbox ----------------
 /**
  * Create a new temporary email inbox using MailSlurp and save in DB
  * @param {string} prefix - Optional prefix for email address
@@ -44,14 +42,8 @@ exports.fetchAndStoreEmails = async (inboxId, user_id) => {
  */
 exports.createEmail = async (prefix, duration = 10, user_id) => {
   if (!user_id) throw { message: "user_id is required", statusCode: 400 };
-
-  // 1️⃣ Create inbox in MailSlurp
   const inbox = await mailslurp.createInbox();
-
-  // 2️⃣ Set expiration
   const expiresAt = new Date(Date.now() + duration * 60 * 1000);
-
-  // 3️⃣ Save inbox in DB
   return await Email.create({
     user_id,
     prefix: prefix || undefined,

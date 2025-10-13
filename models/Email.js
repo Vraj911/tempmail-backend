@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const emailSchema = new mongoose.Schema({
   address: { type: String, required: true, unique: true },
-  prefix: { type: String, required: true },
+  prefix: { type: String },
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     inboxId: { type: String, required: true },
   status: { type: String, enum: ["active", "expired", "deleted"], default: "active" },
